@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avengers Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e62429;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e62429;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)), 
+                        url('https://images.unsplash.com/photo-1628489992953-a062d29f7b10');
+            background-size: cover;
+            background-position: center;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #e62429;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #b71c1c;
+        }
+
+        /* Characters Section */
+        #characters {
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #e62429;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .character-card {
+            background-color: #1c2526;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .character-card:hover {
+            transform: scale(1.05);
+        }
+
+        .character-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .character-card h3 {
+            font-size: 1.2rem;
+            margin: 0.8rem;
+        }
+
+        .character-card p {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin: 0 0.8rem 1rem;
+        }
+
+        /* Movies Section */
+        #movies {
+            padding: 3rem 1rem;
+            background-color: #141414;
+            text-align: center;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .movie-card {
+            background-color: #1c2526;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .movie-card h3 {
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+
+        /* Quiz Section */
+        #quiz {
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        #quiz form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #quiz select, #quiz button {
+            padding: 0.8rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #quiz button {
+            background-color: #e62429;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #quiz button:hover {
+            background-color: #b71c1c;
+        }
+
+        #quiz-result {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: #e62429;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #000;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Avengers Hub</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#characters">Characters</a></li>
+            <li><a href="#movies">Movies</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+        </ul>
+        <div class="hamburger">☰</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Assemble with the Avengers</h1>
+        <p>Join Earth's Mightiest Heroes in their epic battles!</p>
+        <a href="#characters" class="btn">Meet the Team</a>
+    </section>
+
+    <!-- Characters Section -->
+    <section id="characters">
+        <h2>Meet the Avengers</h2>
+        <div class="character-grid">
+            <div class="character-card">
+                <img src="./assets/ironman.png" alt="Iron Man">
+                <h3>Iron Man</h3>
+                <p>Genius, billionaire, playboy, philanthropist.</p>
+            </div>
+            <div class="character-card">
+                <img src="https://images.unsplash.com/photo-1622556498246-7552686e7309" alt="Captain America">
+               
+                <h3>Captain America</h3>
+                <p>Super-soldier with unyielding courage.</p>
+            </div>
+            <div class="character-card">
+                <img src="https://images.unsplash.com/photo-1544211393-6cc555e761eb" alt="Thor">
+                <h3>Thor</h3>
+                <p>God of Thunder from Asgard.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movies Section -->
+    <section id="movies">
+        <h2>Avengers Movies</h2>
+        <div class="movie-grid">
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1" alt="The Avengers">
+                <h3>The Avengers (2012)</h3>
+            </div>
+            <div class="movie-card">
+                <img src="https://images.unsplash.com/photo-1531256379510-7a9b6d42826a" alt="Avengers: Endgame">
+                <h3>Avengers: Endgame (2019)</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz">
+        <h2>Which Avenger Are You?</h2>
+        <form id="quiz-form">
+            <select id="trait" required>
+                <option value="" disabled selected>Choose your strength</option>
+                <option value="tech">Tech Genius</option>
+                <option value="leadership">Leadership</option>
+                <option value="power">Raw Power</option>
+            </select>
+            <button type="submit">Find Out!</button>
+        </form>
+        <div id="quiz-result"></div>
+    </section>
+
+    <script>
+        // Hamburger menu toggle
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Quiz logic
+        document.getElementById('quiz-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const trait = document.getElementById('trait').value;
+            const resultDiv = document.getElementById('quiz-result');
+
+            let result;
+            if (trait === 'tech') {
+                result = 'You are Iron Man! A tech genius with a sharp mind.';
+            } else if (trait === 'leadership') {
+                result = 'You are Captain America! A born leader with unwavering resolve.';
+            } else if (trait === 'power') {
+                result = 'You are Thor! Wielding god-like strength and power.';
+            }
+
+            resultDiv.textContent = result;
+        });
+    </script>
+</body>
+</html>

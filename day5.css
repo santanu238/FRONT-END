@@ -1,0 +1,26 @@
+body
+{
+    background-color: rgba(251, 134, 0, 0.796)
+}
+.s1
+{
+    color: rgb(0, 0, 0);
+    font-size: 50px;
+
+}
+#s2
+{
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    font-size: 30px;
+}
+#s3
+{
+    color: rgb(0, 0, 0);
+    font-family:'Times New Roman', Times, serif;
+    font-size: 50px;
+    
+}
+.main{
+    
+}

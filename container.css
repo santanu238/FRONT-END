@@ -1,0 +1,73 @@
+
+.box1{
+    height: 200px;
+    width: 400px;
+    background-color: rgba(255, 166, 0, 0.846);
+    border: 1px solid black;
+    margin: 5px;
+    background-image: url(./assets/1020138.jpg); 
+    background-size: cover;
+    box-shadow: 10px 10px 20px;
+}
+.box2{
+    height: 200px;
+    width: 400px;
+    background-color: rgba(255, 166, 0, 0.846);
+    border: 1px solid black;
+    margin: 5px;
+    background-image:url(./assets/1355118.jpeg);
+    background-size: cover;
+    box-shadow: 10px 10px 20px;
+    
+}
+.box3{
+    height: 200px;
+    width: 400px;
+    background-color: rgba(255, 166, 0, 0.846);
+    border: 1px solid black;
+    margin: 5px;
+    background-image: url(./assets/1214203.jpg);
+    background-size: cover;
+    box-shadow: 10px 10px 20px;
+    
+}
+.box4{
+    height: 200px;
+    width: 400px;
+    background-color: rgba(255, 166, 0, 0.846);
+    border: 1px solid black;
+    margin: 5px;
+    background-image: url(./assets/backiee-297720-landscape.jpg);
+    background-size: cover;
+    box-shadow: 10px 10px 20px;
+}
+.box1:hover{
+    scale: 90%;
+    background-color: black;
+
+}
+.box2:hover{
+    scale: 90%;
+    background-color: black;
+
+}
+.box3:hover{
+    scale: 90%;
+    background-color: black;
+  
+}
+.box4:hover{
+    scale: 90%;
+    background-color: black;
+
+}
+.container{
+    background-color: rgb(252, 235, 44);
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    height: 95vh;
+    background-image: url(./assets/1288924.jpg);
+    background-size: cover;
+}

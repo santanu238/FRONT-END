@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+</head>
+<style>
+    body{
+        display: flex;
+    }
+    .sidebar{
+        height: 95vh;
+        width: 10%;
+        border-top-right-radius: 10%;
+        border-bottom-right-radius: 10%;
+    }
+    .mainbody{
+        width :90%;
+        
+    }
+    .option:hover{
+       scale :110% ;
+    }
+    .logo{
+        height: 10vh;
+        background-image: url(./assets/cat-typing.gif);
+        background-size: cover;
+        background-position:-5px;
+        border-top-right-radius: 10px;
+
+    }
+    .content{
+        display: flex;
+        height: 90vh;
+    }
+    .one{
+        width: 50%;
+        background-image: url(./assets/2021-F-150-Raptor_GIF_04_1x1.gif);
+        background-size: cover;
+    }
+    .two{
+        width: 50%;
+        background-image: url(./assets/monkey-buisness.gif);
+        background-size: cover;
+    }
+.three{
+    width: 20%;
+    background-image: url(./assets/light-87_256.gif);
+    background-size: cover;
+}
+.navbar{
+    background-image:url(./assets/tech-18050_256.gif);
+        background-size: cover;
+}
+</style>
+<body>
+    <div class="sidebar bg-primary">
+        <div class="border-danger logo">
+
+        </div>
+  
+     <ul class="side-option text-light list-group">
+        <li class="option list-group-item-primary">home</li>
+        <li class="option list-group-item-danger">about us</li>
+        <li class="option list-group-item-warning">careress</li>
+     </ul>
+    </div>
+    <div class="mainbody">
+        <nav class="navbar navbar-expand bg-secondary">
+            <ul class="navbar-nav">
+                <li class="nav-link text-light ">1st option</li>
+                <li class="nav-link text-light">2nd option</li>
+
+            </ul>
+        </nav>
+        <div class="content"> 
+            <div class="bg-info one" style="width: 50%;">one</div>
+        <div class="bg-danger two" style="width: 50%;">two</div>
+        <div class="bg-warning three" style="width: 20%;">three</div>
+    </div>
+    </div>
+</body>
+</html>

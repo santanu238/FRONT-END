@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 95vh;
+        background-image: url(./assets/yatra\ loginpg.jpg);
+        background-size: cover;
+    }
+
+</style>
+<body>
+    <div class="container text-center">
+        <div class="h1 bg-warning ">TRITHA YATRA REGISTRATION FORM</div>
+        <form id="tirthaForm">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for=""class="text-light" >select dham <span class="text-danger">*</span></label>
+                    <select name="dhamName" id="dham" class="form-control">
+                        <option value="-1">-- select--</option>
+                        <option value="jagannath">jagannath dham</option>
+                        <option value="badrinath">badrinath dham</option>
+                        <option value="dwarika">dwarka</option>
+                        <option value="rameswaram">rameswaram</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="" class="text-light">mode of transportation <span class="text-danger">*</span></label>
+                    <select name="transport" id="transport" class="form-control" >
+                        <option value="-1">-- select--</option>
+                        <option value="1">volvo bus</option>
+                        <option value="2">train</option>
+                        <option value="3">fortuner car</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for=""class="text-light" >name of traveller <span class="text-danger">*</span></label>
+                    <input type="text" id="name" name="uname" class="form-control" placeholder="enter your name">
+                </div> 
+                <div class="col-md-3">
+                    <label for=""class="text-light" >adhaar number <span class="text-white">*</span></label>
+                    <input type="number" id="adhaar" name="adhaar" class="form-control" placeholder="enter tour adhaar number">
+                </div> 
+                <div class="col-md-3">
+                    <label for=""class="text-light" >date of birth <span class="text-danger">*</span></label>
+                    <input type="date" id="dob" name="dob" onchange="calcAge()" class="form-control" >
+                </div> 
+                <div class="col-md-3">
+                    <label for="" class="text-light">age</label>
+                    <input type="number" id="age" class="form-control" id="age"  disabled>
+                </div> 
+                <div class="col-md-3">
+                    <label for=""class="text-light" >contact number <span class="text-danger">*</span></label>
+                    <input type="number" id="cNumber" name="cNumber" class="form-control" placeholder="enter your contact number">
+                </div>
+                <div class="col-md-3">
+                    <label for="" class="text-light">Emergency Number</label>
+                    <input type="text"class="form-control" name="eNumber" placeholder="enter your emergency number">
+                </div>
+                <div class="col-md-3">
+                    <label for=""class="text-light" >address <span class="text-danger">*</span></label>
+                    <textarea name="" id="address" name="address" class="form-control"></textarea>
+                </div>
+
+            </div>
+            <div class="text-center mt-5">
+                <button class="btn btn-success" id="submitBtn" onclick="submitForm()">register</button>
+            </div>
+        </form>
+        
+    </div>
+    <script src="./js/tyatra.js"></script>
+</body>
+</html> 

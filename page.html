@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .main{
+        background-color: red;
+        height: 800vh;
+    }
+    .first{
+        background-color: rgb(249, 137, 0);
+        height: 95vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+    .second{
+        background-color: bisque;
+        height: 100vh;
+        display: flex;
+        justify-items: center;
+        align-items: flex-end;
+    }
+    .third{
+        background-color: brown;
+        height: 100vh;
+    }
+    .btn{
+        background-color: rgb(214, 214, 236);
+        padding: 5px;
+        border-radius: 5px;
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        margin-bottom: 5px;
+    }
+</style>
+<body>
+    <div class="main">
+        <div id="first_page" class="first">
+            <a href="#second_page" class="btn">next page</a>
+            <a href="#third_page" class="btn"  style="background-color: rgb(255, 220, 21);">last page</a>
+            <a href="./index.html" class="btn" style="background-color: rgb(171, 171, 0);">login page</a>
+
+        </div>
+        <div id="second_page" class="second">
+         second page
+            <a href="#third_page" class="btn">next page</a>
+        </div>
+        <div id="third_page" class="third">
+third page
+        </div>
+
+    </div>
+</body>
+</html>

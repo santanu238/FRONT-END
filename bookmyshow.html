@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>skbcinema - Movie Ticket Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0d0d0d;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(to right, #1c2526, #2d3839);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ff4d4d;
+            text-transform: uppercase;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: #ff4d4d;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1500x400?text=CineBook+Banner') no-repeat center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        /* Movies Section */
+        .movies {
+            padding: 50px 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .movies h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #ff4d4d;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .movie-card {
+            background: #1c2526;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .movie-details {
+            padding: 15px;
+        }
+
+        .movie-details h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .movie-details p {
+            font-size: 0.9rem;
+            color: #b3b3b3;
+            margin-bottom: 5px;
+        }
+
+        .book-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+
+        .book-btn:hover {
+            background: #cc0000;
+        }
+
+        /* Booking Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+        }
+
+        .modal-content {
+            background: #1c2526;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .modal-content h2 {
+            color: #ff4d4d;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .modal-content label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #fff;
+        }
+
+        .modal-content input, .modal-content select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background: #2d3839;
+            color: #fff;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.8rem;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: #ff4d4d;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1c2526;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            border-top: 1px solid #2d3839;
+        }
+
+        .footer a {
+            color: #ff4d4d;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .nav {
+                margin-top: 15px;
+            }
+            .nav a {
+                margin: 0 10px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .movie-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">santanu cinema</div>
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#movies">Movies</a>
+            <a href="#offers">Offers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Book Your Movie Tickets</h1>
+            <p>Experience Cinema Like Never Before</p>
+            <p>SANTANU CINEMA</p>
+        </div>
+    </section>
+
+    <!-- Movies Section -->
+    <section class="movies" id="movies">
+        <h2>Now Showing - Top 10 Movies</h2>
+        <div class="movie-grid">
+            <div class="movie-card">
+                <img src="./assets/dune_part_two.jpg" alt="Dune: Part Two">
+                <div class="movie-details">
+                    <h3>Dune: Part Two</h3>
+                    <p>Genre: Sci-Fi</p>
+                    <p>Showtime: 6:00 PM</p>
+                    <p>Price: $15</p>
+                    <button class="book-btn" onclick="openBooking('Dune: Part Two', '$15')">Book Now</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="./assets/oppenheimer_ver3.jpg" alt="Oppenheimer">
+                <div class="movie-details">
+                    <h3>Oppenheimer</h3>
+                    <p>Genre: Biography/Drama</p>
+                    <p>Showtime: 8:00 PM</p>
+                    <p>Price: $12</p>
+                    <button class="book-btn" onclick="openBooking('Oppenheimer', '$12')">Book Now</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="./assets/barbie_ver4.jpg" alt="Barbie">
+                <div class="movie-details">
+                    <h3>Barbie</h3>
+                    <p>Genre: Comedy/Fantasy</p>
+                    <p>Showtime: 7:00 PM</p>
+                    <p>Price: $10</p>
+                    <button class="book-btn" onclick="openBooking('Barbie', '$10')">Book Now</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="./assets/avatar_the_way_of_water.jpg" alt="Avatar: The Way of Water">
+                <div class="movie-details">
+                    <h3>Avatar: The Way of Water</h3>
+                    <p>Genre: Sci-Fi/Action</p>
+                    <p>Showtime: 9:00 PM</p>
+                    <p>Price: $18</p>
+                    <button class="book-btn" onclick="openBooking('Avatar: The Way of Water', '$18')">Book Now</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="./assets/batman_ver3.jpg" alt="The Batman">
+                <div class="movie-details">
+                    <h3>The Batman</h3>
+                    <p>Genre: Action/Crime</p>
+                    <p>Showtime: 6:30 PM</p>
+                    <p>Price: $14</p>
+                    <button class="book-btn" onclick="openBooking('The Batman', '$14')">Book Now</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="./assets/spiderman_across_the_spiderverse_ver3.jpg" alt="Spider-Man: Across the Spider-Verse">
+                <div class="movie-details">
+                    <h3>Spider-Man: Across the Spider-Verse</h3>
+                    <p>Genre: Animation/Action</p>
+                    <p>Showtime: 7:30 PM</p>
+                    <p>Price: $13</p>
+                    <button class="book-btn" onclick="openBooking('Spider-Man: Across the Spider-Verse', '$13')">Book Now</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="./assets/mission_impossible__dead_reckoning_part_one_ver2.jpg" alt="Mission: Impossible - Dead Reckoning">
+                <div class="movie-details">
+                    <h3>Mission: Impossible - Dead Reckoning</h3>
+                    <p>Genre: Action/Thriller</p>
+                    <p>Showtime: 8:30 PM</p>
+                    <p>Price: $16</p>
+                    <button class="book-btn" onclick="openBooking('Mission: Impossible - Dead Reckoning', '$16')">Book Now</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="./assets/marvels_ver3.jpg" alt="The Marvels">
+                <div class="movie-details">
+                    <h3>The Marvels</h3>
+                    <p>Genre: Action/Sci-Fi</p>
+                    <p>Showtime: 6:00 PM</p>
+                    <p>Price: $15</p>
+                    <button class="book-btn" onclick="openBooking('The Marvels', '$15')">Book Now</button>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="./assets/john_wick_chapter_four_ver3.jpg" alt="John Wick: Chapter 4">
+                <div class="movie-details">
+                    <h3>John Wick: Chapter 4</h3>
+                    <p>Genre: Action/Thriller</p>
+                    <p>Showtime: 9:30 PM</p>
+                    <p>Price: $14</p>
+                    <button class="book-btn" onclick="openBooking('John Wick: Chapter 4', '$14')">Book Now</button>
+                </div>
+            </div>
+            
+            <div class="movie-card">
+                <img src="./assets/guardians_of_the_galaxy_vol_three_ver2.jpg" alt="Guardians of the Galaxy Vol. 3">
+                <div class="movie-details">
+                    <h3>Guardians of the Galaxy Vol. 3</h3>
+                    <p>Genre: Sci-Fi/Action</p>
+                    <p>Showtime: 7:00 PM</p>
+                    <p>Price: $15</p>
+                    <button class="book-btn" onclick="openBooking('Guardians of the Galaxy Vol. 3', '$15')">Book Now</button>
+                </div>
+                
+            </div>
+            
+            <div class="movie-card">
+                <img src="./assets/avengers_endgame_ver2.jpg" alt="Avatar: The Way of Water">
+                <div class="movie-details">
+                    <h3>Avengers: Endgame</h3>
+                    <p>Genre: Sci-Fi/Action</p>
+                    <p>Showtime: 8:00 PM</p>
+                    <p>Price: $20</p>
+                    <button class="book-btn" onclick="openBooking('Avatar: The Way of Water', '$18')">Book Now</button>
+                </div>
+                
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeBooking()">×</span>
+            <h2>Book Your Ticket</h2>
+            <form id="bookingForm" onsubmit="submitBooking(event)">
+                <label for="movieName">Movie Name:</label>
+                <input type="text" id="movieName" readonly>
+
+                <label for="price">Price:</label>
+                <input type="text" id="price" readonly>
+
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+
+                <label for="tickets">Number of Tickets:</label>
+                <select id="tickets" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+
+                <label for="showtime">Showtime:</label>
+                <select id="showtime" required>
+                    <option value="6:00 PM">6:00 PM</option>
+                    <option value="7:00 PM">7:00 PM</option>
+                    <option value="8:00 PM">8:00 PM</option>
+                    <option value="9:00 PM">9:00 PM</option>
+                </select>
+
+                <button type="submit" class="book-btn">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 skbcinema. All Rights Reserved. | <a href="#privacy">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // Open Booking Modal
+        function openBooking(movieName, price) {
+            document.getElementById('movieName').value = movieName;
+            document.getElementById('price').value = price;
+            document.getElementById('bookingModal').style.display = 'flex';
+        }
+
+        // Close Booking Modal
+        function closeBooking() {
+            document.getElementById('bookingModal').style.display = 'none';
+        }
+
+        // Submit Booking Form
+        function submitBooking(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const tickets = document.getElementById('tickets').value;
+            const showtime = document.getElementById('showtime').value;
+            const movieName = document.getElementById('movieName').value;
+            const price = document.getElementById('price').value;
+
+            const total = parseFloat(price.slice(1)) * tickets;
+            alert(`Booking Confirmed!\nMovie: ${movieName}\nName: ${name}\nEmail: ${email}\nTickets: ${tickets}\nShowtime: ${showtime}\nTotal: $${total.toFixed(2)}`);
+            closeBooking();
+            document.getElementById('bookingForm').reset();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target === modal) {
+                closeBooking();
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

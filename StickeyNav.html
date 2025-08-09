@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StickeyNavbar</title>
+</head>
+<style>
+    body {
+      font-size: 28px;
+    }
+    
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      position: -webkit-sticky; /* Safari */
+      position: sticky;
+      top: 0;
+    }
+    
+    li {
+      float: left;
+    }
+    
+    li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+    
+    li a:hover {
+      background-color: #26c709;
+    }
+    
+    .active {
+      background-color: #a4d911;
+    }
+    .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+    </style>
+<body>
+    <div class="header">
+      </div>
+      
+      <ul>
+        <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      
+      <h3>Sticky Navigation Bar</h3>
+      <p>The navbar will <strong>stick</strong> to the top when you reach its scroll position.</p>
+      <p><strong>Nature:</strong>is a British weekly scientific journal founded and based in London, England. As a multidisciplinary publication, Nature features peer-reviewed research from a variety of academic disciplines, mainly in science and technology. It has core editorial offices across the United States, continental Europe, and Asia under the international scientific publishing company Springer Nature. Nature was one of the world's most cited scientific journals by the Science Edition of the 2022 Journal Citation Reports (with an ascribed impact factor of 50.5),[1] making it one of the world's most-read and most prestigious academic journals.[2][3][4] As of 2012, it claimed an online readership of about three million unique readers per month.[5]</p>
+
+      <div class="dropdown">
+        <img src="./Nav/32-lake-louise.jpg" alt="Cinque Terre" width="100" height="50">
+        <div class="dropdown-content">
+        <img src="./Nav/32-lake-louise.jpg" alt="Cinque Terre" width="300" height="200">
+        <div class="desc">Beautiful Cinque Terre</div>
+        </div>
+      </div>
+      <p><strong>History:</strong>
+        The huge progress in science and mathematics during the 19th century was recorded in journals written mostly in German or French, as well as in English. Britain underwent enormous technological and industrial changes and advances particularly in the latter half of the 19th century.[10] The most respected scientific journals of this time were the refereed journals of the Royal Society, which had published many of the great works from Isaac Newton and Michael Faraday to Charles Darwin. In addition, the number of popular science periodicals doubled from the 1850s to the 1860s.[11] According to the editors of these popular science magazines, the publications were designed to serve as "organs of science", in essence, a means of connecting the public to the scientific world.[11]
+
+Nature, first created in 1869, was not the first magazine of its kind in Britain. One journal to precede Nature was Recreative Science: A Record and Remembrancer of Intellectual Observation,[12] which, created in 1859, began as a natural history magazine and progressed to include more physical observational science and technical subjects and less natural history.[13] The journal's name changed from its original title to Intellectual Observer: A Review of Natural History, Microscopic Research, and Recreative Science[14] and then to the Student and Intellectual Observer of Science, Literature, and Art.[15] While Recreative Science had attempted to include more physical sciences such as astronomy and archaeology, the Intellectual Observer broadened itself further to include literature and art as well.[15] Similar to Recreative Science was the scientific journal Popular Science Review, created in 1862,[16] which covered different fields of science by creating subsections titled "Scientific Summary" or "Quarterly Retrospect", with book reviews and commentary on the latest scientific works and publications.[16] Two other journals produced in England prior to the development of Nature were the Quarterly Journal of Science and Scientific Opinion, established in 1864 and 1868, respectively.[15] The journal most closely related to Nature in its editorship and format was The Reader, created in 1863; the publication mixed science with literature and art in an attempt to reach an audience outside of the scientific community, similar to Popular Science Review.[15]
+
+These similar journals all ultimately failed. The Popular Science Review survived longest, lasting 20 years and ending its publication in 1881; Recreative Science ceased publication as the Student and Intellectual Observer in 1871. The Quarterly Journal, after undergoing a number of editorial changes, ceased publication in 1885. The Reader terminated in 1867, and finally, Scientific Opinion lasted a mere 2 years, until June 1870.[13]
+      </p>
+           
+</body>
+</html>

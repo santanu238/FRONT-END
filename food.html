@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieHub - Food Delivery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #ff6f61;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            border-bottom: 2px solid white;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(to bottom, #ff6f61, #ffb88c);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #ff6f61;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Restaurant Section */
+        #restaurants {
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .restaurant-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .restaurant-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .restaurant-card h3 {
+            font-size: 1.1rem;
+            margin: 0.5rem;
+        }
+
+        .restaurant-card p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Menu Section */
+        #menu {
+            padding: 2rem 1rem;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .menu-item {
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .menu-item h3 {
+            font-size: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .menu-item p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .menu-item button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .menu-item button:hover {
+            background-color: #e55a50;
+        }
+
+        /* Cart Section */
+        .cart-section {
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 5px;
+        }
+
+        .cart-item button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart-total {
+            margin-top: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                background-color: #ff6f61;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">FoodieHub</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#cart">Cart (<span id="cart-count">0</span>)</a></li>
+        </ul>
+        <div class="hamburger">☰</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Delicious Food, Delivered!</h1>
+        <p>Order from top restaurants near you.</p>
+        <a href="#menu" class="btn">Explore Menu</a>
+    </section>
+
+    <!-- Restaurant Section -->
+    <section id="restaurants">
+        <h2>Top Restaurants</h2>
+        <div class="restaurant-grid">
+            <div class="restaurant-card">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Restaurant">
+                <h3>Pizza Palace</h3>
+                <p>Italian, Pizza</p>
+            </div>
+            <div class="restaurant-card">
+                <img src="https://images.unsplash.com/photo-1533777324892-5f2c7edd0690" alt="Restaurant">
+                <h3>Spice Haven</h3>
+                <p>Indian, Curry</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <h2>Our Menu</h2>
+        <div class="menu-grid" id="menu-grid"></div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" class="cart-section">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <div class="cart-total">
+            <h3>Total: ₹<span id="cart-total">0</span></h3>
+            <button class="btn" onclick="checkout()">Checkout</button>
+        </div>
+    </section>
+
+    <script>
+        // Menu data
+        const menuItems = [
+            { id: 1, name: "Margherita Pizza", price: 250, image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d172" },
+            { id: 2, name: "Butter Chicken", price: 350, image: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398" },
+        ];
+
+        let cart = [];
+
+        // Load menu
+        function loadMenu() {
+            const menuGrid = document.getElementById("menu-grid");
+            menuItems.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "menu-item";
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p>₹${item.price}</p>
+                    <button onclick="addToCart(${item.id})">Add to Cart</button>
+                `;
+                menuGrid.appendChild(div);
+            });
+        }
+
+        // Add to cart
+        function addToCart(id) {
+            const item = menuItems.find(item => item.id === id);
+            cart.push(item);
+            updateCart();
+        }
+
+        // Update cart
+        function updateCart() {
+            const cartItemsDiv = document.getElementById("cart-items");
+            const cartTotal = document.getElementById("cart-total");
+            const cartCount = document.getElementById("cart-count");
+
+            cartItemsDiv.innerHTML = "";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                const div = document.createElement("div");
+                div.className = "cart-item";
+                div.innerHTML = `
+                    <span>${item.name}</span>
+                    <span>₹${item.price}</span>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsDiv.appendChild(div);
+            });
+
+            cartTotal.textContent = total;
+            cartCount.textContent = cart.length;
+        }
+
+        // Remove from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Cart is empty!");
+            } else {
+                alert("Order placed!");
+                cart = [];
+                updateCart();
+            }
+        }
+
+        // Hamburger menu
+        document.querySelector(".hamburger").addEventListener("click", () => {
+            document.querySelector(".nav-links").classList.toggle("active");
+        });
+
+        // Load menu on start
+        loadMenu();
+    </script>
+</body>
+</html>
